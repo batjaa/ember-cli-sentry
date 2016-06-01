@@ -41,7 +41,8 @@ export function initialize(application) {
       release: service.get(serviceReleaseProperty) || config.APP.version
     }, ravenOptions);
 
-    window.Raven.config(dsn, ravenConfig);
+    window.Raven.config(dsn, ravenConfig)
+      .addPlugin(Raven.Plugins.Ember);
   } catch (e) {
     Ember.Logger.warn('Error during `sentry` initialization: ' + e);
     return;
